@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
-  '/images1.jpg',
-  '/images2.jpg',
-  '/images3.jpg',
-  '/images4.jpg',
-  '/images5.jpg',
+  './images1.jpg',
+  './images2.jpg',
+  './images3.jpg',
+  './images4.jpg',
+  './images5.jpg',
 ];
 
 const BackgroundCarousel = ({ activeSection }: { activeSection: string }) => {

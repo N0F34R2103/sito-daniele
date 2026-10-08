@@ -148,7 +148,7 @@ export default function App() {
             ].map((p, idx) => (
               <motion.div key={p.title} whileHover={{ y: -10 }} className="bg-slate-900/60 rounded-3xl border border-slate-800 p-8 transition-all hover:border-red-900/50 shadow-xl">
                 <div className="aspect-video overflow-hidden rounded-2xl mb-8">
-                  <img src={`/images${idx + 1}.jpg`} alt={p.title} className="w-full h-full object-cover" />
+                  <img src={`./images${idx + 1}.jpg`} alt={p.title} className="w-full h-full object-cover" />
                 </div>
                 <p.icon className="mb-6 text-red-600" size={40} />
                 <h3 className="text-3xl font-bold mb-4">{p.title}</h3>
