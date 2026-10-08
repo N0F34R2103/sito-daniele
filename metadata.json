@@ -1,0 +1,6 @@
+{
+  "name": "Daniele Balestrino - Personal Trainer",
+  "description": "Modern personal training services by Daniele Balestrino.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
