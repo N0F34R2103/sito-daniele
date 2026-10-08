@@ -22,18 +22,18 @@ const BackgroundCarousel = ({ activeSection }: { activeSection: string }) => {
 
   return (
     <div className="fixed inset-0 z-0">
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.img
           key={imageIndex}
           src={images[imageIndex]}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute inset-0 w-full h-full object-cover"
         />
       </AnimatePresence>
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-slate-50/50" />
     </div>
   );
 };

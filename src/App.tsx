@@ -11,11 +11,11 @@ const SectionWrapper = ({ children, id }: { children: React.ReactNode; id: strin
     whileInView="visible"
     viewport={{ once: true, margin: '-100px' }}
     variants={{
-      hidden: { opacity: 0 },
-      visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+      hidden: { opacity: 0, scale: 0.95, skewY: 3 },
+      visible: { opacity: 1, scale: 1, skewY: 0, transition: { duration: 0.8, staggerChildren: 0.2, ease: "easeOut" } }
     }}
   >
-    <motion.div variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}>
+    <motion.div variants={{ hidden: { opacity: 0, y: 60 }, visible: { opacity: 1, y: 0 } }}>
       {children}
     </motion.div>
   </motion.section>
@@ -83,7 +83,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-slate-100 font-sans relative overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans relative overflow-x-hidden">
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-red-600 origin-left z-[60]"
@@ -98,13 +98,14 @@ export default function App() {
           href="https://wa.me/393347401501?text=Ciao%2C%20vorrei%20avere%20maggiori%20informazioni%20sui%20vostri%20programmi%20di%20allenamento." 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="p-3 bg-red-700 hover:bg-red-600 text-white rounded-full shadow-lg transition-all" 
-          whileHover={{ scale: 1.1 }}
+          className="p-3 bg-red-600 hover:bg-red-700 text-white rounded-full shadow-lg transition-all" 
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           <MessageCircle size={20} />
         </motion.a>
-        <motion.a href="https://www.instagram.com/danielebalestrino_fitnesscoach" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800 hover:bg-slate-700 text-white rounded-full shadow-lg transition-all" whileHover={{ scale: 1.1 }}><Instagram size={20} /></motion.a>
-        <motion.button onClick={() => scrollToSection(navLinks[(navLinks.findIndex(l => l.id === activeSection) + 1) % navLinks.length].id)} className="p-3 bg-slate-50 text-black rounded-full shadow-lg transition-all" whileHover={{ scale: 1.1 }}><ChevronDown size={20} /></motion.button>
+        <motion.a href="https://www.instagram.com/danielebalestrino_fitnesscoach" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-200 hover:bg-slate-300 text-slate-900 rounded-full shadow-lg transition-all" whileHover={{ scale: 1.1 }}><Instagram size={20} /></motion.a>
+        <motion.button onClick={() => scrollToSection(navLinks[(navLinks.findIndex(l => l.id === activeSection) + 1) % navLinks.length].id)} className="p-3 bg-white text-slate-900 rounded-full shadow-lg transition-all" whileHover={{ scale: 1.1 }}><ChevronDown size={20} /></motion.button>
       </div>
       
       {/* Main Content */}
@@ -113,14 +114,14 @@ export default function App() {
         <section id="home" className="min-h-screen flex items-center justify-center pt-20 px-6 scroll-mt-20">
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="text-center">
             <motion.h1 
-              className="text-6xl md:text-9xl font-extrabold tracking-tighter mb-8 bg-gradient-to-r from-red-600 to-slate-400 bg-clip-text text-transparent"
+              className="text-6xl md:text-9xl font-extrabold tracking-tighter mb-8 bg-gradient-to-r from-red-600 to-slate-700 bg-clip-text text-transparent drop-shadow-sm"
               initial={{ opacity: 0, y: 50, skewX: 20 }}
               animate={{ opacity: 1, y: 0, skewX: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               Allenamento e <br /> Nutrizione su Misura.
             </motion.h1>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">Percorsi personalizzati basati sulle tue esigenze uniche. Dalla scienza alla pratica, per risultati reali.</p>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10 drop-shadow-sm">Percorsi personalizzati basati sulle tue esigenze uniche. Dalla scienza alla pratica, per risultati reali.</p>
           </motion.div>
         </section>
 
@@ -132,7 +133,7 @@ export default function App() {
             </div>
             <div className="space-y-6">
               <h2 className="text-5xl font-bold">Il tuo approccio unico</h2>
-              <p className="text-lg text-slate-400">Non esistono soluzioni standard. Analizzo la tua fisiologia, il tuo stile di vita e i tuoi obiettivi per creare un sistema sinergico di allenamento e nutrizione che si adatti a te, e non viceversa.</p>
+              <p className="text-lg text-slate-700">Non esistono soluzioni standard. Analizzo la tua fisiologia, il tuo stile di vita e i tuoi obiettivi per creare un sistema sinergico di allenamento e nutrizione che si adatti a te, e non viceversa.</p>
             </div>
           </div>
         </SectionWrapper>
@@ -146,13 +147,13 @@ export default function App() {
                 { title: 'Nutrizione Adattata', desc: 'Piani alimentari flessibili e sostenibili, creati per supportare il tuo allenamento e la tua salute.', icon: Star },
                 { title: 'Monitoraggio Costante', desc: 'Analisi periodica dei progressi e aggiustamenti del programma in tempo reale.', icon: TrendingDown }
             ].map((p, idx) => (
-              <motion.div key={p.title} whileHover={{ y: -10 }} className="bg-slate-900/60 rounded-3xl border border-slate-800 p-8 transition-all hover:border-red-900/50 shadow-xl">
+              <motion.div key={p.title} whileHover={{ y: -10 }} className="bg-white/70 backdrop-blur-md rounded-3xl border border-slate-200 p-8 transition-all hover:border-red-500/50 shadow-lg">
                 <div className="aspect-video overflow-hidden rounded-2xl mb-8">
                   <img src={`./images${idx + 1}.jpg`} alt={p.title} className="w-full h-full object-cover" />
                 </div>
                 <p.icon className="mb-6 text-red-600" size={40} />
-                <h3 className="text-3xl font-bold mb-4">{p.title}</h3>
-                <p className="text-slate-300 leading-relaxed">{p.desc}</p>
+                <h3 className="text-3xl font-bold mb-4 text-slate-900">{p.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{p.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -162,12 +163,12 @@ export default function App() {
         <SectionWrapper id="stats">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {stats.map((stat, idx) => (
-              <div key={idx} className="bg-slate-900/60 p-10 rounded-3xl border border-slate-800 text-center shadow-xl hover:border-red-900/50 transition-all">
+              <div key={idx} className="bg-white/70 backdrop-blur-md p-10 rounded-3xl border border-slate-200 text-center shadow-lg hover:border-red-500/50 transition-all">
                 <stat.icon className="w-12 h-12 text-red-600 mx-auto mb-6" />
-                <h3 className="text-6xl font-extrabold text-white mb-3">
+                <h3 className="text-6xl font-extrabold text-slate-900 mb-3">
                   <Counter to={stat.value} />+
                 </h3>
-                <p className="text-slate-300 font-semibold tracking-wide uppercase text-sm">{stat.label}</p>
+                <p className="text-slate-600 font-semibold tracking-wide uppercase text-sm">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -185,14 +186,14 @@ export default function App() {
               dragTransition={{ power: 0.2, timeConstant: 200, modifyTarget: target => Math.round(target / 320) * 320 }}
             >
               {[1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((i, idx) => (
-                <motion.div key={idx} className="flex-shrink-0 w-80 p-8 border border-slate-800 rounded-3xl bg-slate-900/60 shadow-xl hover:border-red-900/50 transition-all">
+                <motion.div key={idx} className="flex-shrink-0 w-80 p-8 border border-slate-200 rounded-3xl bg-white/70 backdrop-blur-md shadow-lg hover:border-red-500/50 transition-all">
                   <Star className="text-red-600 mb-6" size={32} fill="currentColor" />
-                  <p className="mb-8 text-slate-300 leading-relaxed italic">"Daniele ha trasformato il mio approccio all'allenamento. I risultati erano visibili in poche settimane."</p>
+                  <p className="mb-8 text-slate-600 leading-relaxed italic">"Daniele ha trasformato il mio approccio all'allenamento. I risultati erano visibili in poche settimane."</p>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center">
                       <Users className="text-slate-500" size={24} />
                     </div>
-                    <span className="font-semibold text-white">Cliente {i}</span>
+                    <span className="font-semibold text-slate-900">Cliente {i}</span>
                   </div>
                 </motion.div>
               ))}
