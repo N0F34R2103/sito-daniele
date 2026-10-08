@@ -128,7 +128,7 @@ export default function App() {
         <SectionWrapper id="about">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div className="aspect-square overflow-hidden rounded-3xl border border-slate-800">
-              <img src="/images5.jpg" alt="Daniele e Cliente" className="w-full h-full object-cover" />
+              <img src="./images5.jpg" alt="Daniele e Cliente" className="w-full h-full object-cover" />
             </div>
             <div className="space-y-6">
               <h2 className="text-5xl font-bold">Il tuo approccio unico</h2>
